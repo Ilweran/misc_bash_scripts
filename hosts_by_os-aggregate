@@ -1,0 +1,6 @@
+#!/bin/bash
+agghosts=$(openstack aggregate show $1 | grep hosts | cut -d "|" -f 3)
+cmp=cmp
+tmp="${agghosts//$cmp}"
+printf "********************************************************************************"
+printf "\nNumber of nodes in $1 aggregate is $(((${#agghosts} - ${#tmp}) / ${#cmp}))\n\n"
